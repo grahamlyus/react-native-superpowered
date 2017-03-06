@@ -36,7 +36,18 @@
 		2DCD954D1E0B4F2C00145EB5 /* ReactNativeSuperpoweredTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactNativeSuperpoweredTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		DB74A3A81E6DE977005B8412 /* SuperpoweredModule.m in Sources */ = {isa = PBXBuildFile; fileRef = DB74A3A71E6DE977005B8412 /* SuperpoweredModule.m */; };
+		DB74A3A81E6DE977005B8412 /* SuperpoweredModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB74A3A71E6DE977005B8412 /* SuperpoweredModule.mm */; };
+		DB74A44E1E6DF71A005B8412 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A44D1E6DF71A005B8412 /* CoreMedia.framework */; };
+		DB74A4501E6DF725005B8412 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A44F1E6DF725005B8412 /* AudioToolbox.framework */; };
+		DB74A4521E6DF72E005B8412 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A4511E6DF72E005B8412 /* AVFoundation.framework */; };
+		DB74A4541E6DF737005B8412 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A4531E6DF737005B8412 /* CoreGraphics.framework */; };
+		DB74A4561E6DF743005B8412 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A4551E6DF743005B8412 /* Foundation.framework */; };
+		DB74A4581E6DF74D005B8412 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A4571E6DF74D005B8412 /* MediaPlayer.framework */; };
+		DB74A45A1E6DF757005B8412 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A4591E6DF757005B8412 /* UIKit.framework */; };
+		DB74A45C1E6DF78C005B8412 /* libSuperpoweredAudioIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB74A45B1E6DF78C005B8412 /* libSuperpoweredAudioIOS.a */; };
+		DB74A45F1E6DF79D005B8412 /* SuperpoweredIOSAudioIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB74A45E1E6DF79D005B8412 /* SuperpoweredIOSAudioIO.mm */; };
+		DB74A4691E6E001E005B8412 /* lycka.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB74A4671E6E001E005B8412 /* lycka.mp3 */; };
+		DB74A46A1E6E001E005B8412 /* nuyorica.m4a in Resources */ = {isa = PBXBuildFile; fileRef = DB74A4681E6E001E005B8412 /* nuyorica.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,7 +268,25 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		DB74A3A61E6DE977005B8412 /* SuperpoweredModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredModule.h; sourceTree = "<group>"; };
-		DB74A3A71E6DE977005B8412 /* SuperpoweredModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperpoweredModule.m; sourceTree = "<group>"; };
+		DB74A3A71E6DE977005B8412 /* SuperpoweredModule.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SuperpoweredModule.mm; sourceTree = "<group>"; };
+		DB74A44D1E6DF71A005B8412 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		DB74A44F1E6DF725005B8412 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		DB74A4511E6DF72E005B8412 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DB74A4531E6DF737005B8412 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DB74A4551E6DF743005B8412 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DB74A4571E6DF74D005B8412 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		DB74A4591E6DF757005B8412 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DB74A45B1E6DF78C005B8412 /* libSuperpoweredAudioIOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSuperpoweredAudioIOS.a; sourceTree = "<group>"; };
+		DB74A45D1E6DF79D005B8412 /* SuperpoweredIOSAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredIOSAudioIO.h; sourceTree = "<group>"; };
+		DB74A45E1E6DF79D005B8412 /* SuperpoweredIOSAudioIO.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SuperpoweredIOSAudioIO.mm; sourceTree = "<group>"; };
+		DB74A4611E6DF87B005B8412 /* SuperpoweredAdvancedAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredAdvancedAudioPlayer.h; sourceTree = "<group>"; };
+		DB74A4621E6DF87B005B8412 /* SuperpoweredFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredFilter.h; sourceTree = "<group>"; };
+		DB74A4631E6DF87B005B8412 /* SuperpoweredFlanger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredFlanger.h; sourceTree = "<group>"; };
+		DB74A4641E6DF87B005B8412 /* SuperpoweredRoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredRoll.h; sourceTree = "<group>"; };
+		DB74A4651E6DF87B005B8412 /* SuperpoweredSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredSimple.h; sourceTree = "<group>"; };
+		DB74A4661E6DFBCD005B8412 /* SuperpoweredFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredFX.h; sourceTree = "<group>"; };
+		DB74A4671E6E001E005B8412 /* lycka.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lycka.mp3; sourceTree = "<group>"; };
+		DB74A4681E6E001E005B8412 /* nuyorica.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nuyorica.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +302,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB74A45A1E6DF757005B8412 /* UIKit.framework in Frameworks */,
+				DB74A4581E6DF74D005B8412 /* MediaPlayer.framework in Frameworks */,
+				DB74A4561E6DF743005B8412 /* Foundation.framework in Frameworks */,
+				DB74A4541E6DF737005B8412 /* CoreGraphics.framework in Frameworks */,
+				DB74A4521E6DF72E005B8412 /* AVFoundation.framework in Frameworks */,
+				DB74A4501E6DF725005B8412 /* AudioToolbox.framework in Frameworks */,
+				DB74A44E1E6DF71A005B8412 /* CoreMedia.framework in Frameworks */,
+				DB74A45C1E6DF78C005B8412 /* libSuperpoweredAudioIOS.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -400,7 +437,9 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				DB74A3A61E6DE977005B8412 /* SuperpoweredModule.h */,
-				DB74A3A71E6DE977005B8412 /* SuperpoweredModule.m */,
+				DB74A3A71E6DE977005B8412 /* SuperpoweredModule.mm */,
+				DB74A4671E6E001E005B8412 /* lycka.mp3 */,
+				DB74A4681E6E001E005B8412 /* nuyorica.m4a */,
 			);
 			name = ReactNativeSuperpowered;
 			sourceTree = "<group>";
@@ -468,10 +507,15 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				DB74A4601E6DF827005B8412 /* Superpowered Headers */,
+				DB74A45B1E6DF78C005B8412 /* libSuperpoweredAudioIOS.a */,
+				DB74A45D1E6DF79D005B8412 /* SuperpoweredIOSAudioIO.h */,
+				DB74A45E1E6DF79D005B8412 /* SuperpoweredIOSAudioIO.mm */,
 				13B07FAE1A68108700A75B9A /* ReactNativeSuperpowered */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactNativeSuperpoweredTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				DB74A4061E6DF69A005B8412 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -486,6 +530,33 @@
 				2D02E4901E0B4A5D006451C7 /* ReactNativeSuperpowered-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DB74A4061E6DF69A005B8412 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB74A4591E6DF757005B8412 /* UIKit.framework */,
+				DB74A4571E6DF74D005B8412 /* MediaPlayer.framework */,
+				DB74A4551E6DF743005B8412 /* Foundation.framework */,
+				DB74A4531E6DF737005B8412 /* CoreGraphics.framework */,
+				DB74A4511E6DF72E005B8412 /* AVFoundation.framework */,
+				DB74A44F1E6DF725005B8412 /* AudioToolbox.framework */,
+				DB74A44D1E6DF71A005B8412 /* CoreMedia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB74A4601E6DF827005B8412 /* Superpowered Headers */ = {
+			isa = PBXGroup;
+			children = (
+				DB74A4661E6DFBCD005B8412 /* SuperpoweredFX.h */,
+				DB74A4611E6DF87B005B8412 /* SuperpoweredAdvancedAudioPlayer.h */,
+				DB74A4621E6DF87B005B8412 /* SuperpoweredFilter.h */,
+				DB74A4631E6DF87B005B8412 /* SuperpoweredFlanger.h */,
+				DB74A4641E6DF87B005B8412 /* SuperpoweredRoll.h */,
+				DB74A4651E6DF87B005B8412 /* SuperpoweredSimple.h */,
+			);
+			name = "Superpowered Headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -574,10 +645,15 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 445FKZ5HC5;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 445FKZ5HC5;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 445FKZ5HC5;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
@@ -845,6 +921,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				DB74A4691E6E001E005B8412 /* lycka.mp3 in Resources */,
+				DB74A46A1E6E001E005B8412 /* nuyorica.m4a in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,9 +988,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB74A3A81E6DE977005B8412 /* SuperpoweredModule.m in Sources */,
+				DB74A3A81E6DE977005B8412 /* SuperpoweredModule.mm in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				DB74A45F1E6DF79D005B8412 /* SuperpoweredIOSAudioIO.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,6 +1044,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 445FKZ5HC5;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -987,6 +1067,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 445FKZ5HC5;
 				INFOPLIST_FILE = ReactNativeSuperpoweredTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1006,8 +1087,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 445FKZ5HC5;
 				INFOPLIST_FILE = ReactNativeSuperpowered/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1024,8 +1110,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 445FKZ5HC5;
 				INFOPLIST_FILE = ReactNativeSuperpowered/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1047,6 +1138,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 445FKZ5HC5;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ReactNativeSuperpowered-tvOS/Info.plist";
@@ -1074,6 +1166,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 445FKZ5HC5;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ReactNativeSuperpowered-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
