@@ -1,6 +1,4 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
  * @flow
  */
 
@@ -9,22 +7,40 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  NativeModules
 } from 'react-native';
 
+const SuperpoweredModule = NativeModules.SuperpoweredModule;
+
 export default class ReactNativeSuperpowered extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      volume: null,
+    }
+  }
+
+  componentDidMount() {
+    this.getVolume();
+  }
+
+  async getVolume() {
+    try {
+      let volume = await SuperpoweredModule.getVolume();
+
+      this.setState({ volume });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          Volume: { this.state.volume }
         </Text>
       </View>
     );
@@ -42,11 +58,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
 
