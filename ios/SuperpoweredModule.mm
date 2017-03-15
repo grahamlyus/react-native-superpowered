@@ -31,8 +31,6 @@ static const float headroom = powf(10.0f, -HEADROOM_DECIBEL * 0.025);
   unsigned int lastSamplerate;
 }
 
-RCT_EXPORT_MODULE();
-
 void playerEventCallbackA(void *clientData, SuperpoweredAdvancedAudioPlayerEvent event, void *value) {
   if (event == SuperpoweredAdvancedAudioPlayerEvent_LoadSuccess) {
     SuperpoweredModule *self = (__bridge SuperpoweredModule *)clientData;
@@ -85,8 +83,8 @@ RCT_REMAP_METHOD(init,
                  initRejecter:(RCTPromiseRejectBlock)reject)
 {
   lastSamplerate = activeFx = 0;
-  crossValue = volB = 0.0f;
-  volA = 1.0f * headroom;
+  crossValue = 0.0f;
+  volA = volB = 1.0f * headroom;
   if (posix_memalign((void **)&stereoBuffer, 16, 4096 + 128) != 0) abort(); // Allocating memory, aligned to 16.
   
   playerA = new SuperpoweredAdvancedAudioPlayer((__bridge void *)self, playerEventCallbackA, 44100, 0);
@@ -110,6 +108,52 @@ RCT_REMAP_METHOD(init,
   }
 }
 
+RCT_REMAP_METHOD(playPause,
+                 playPauseResolver:(RCTPromiseResolveBlock)resolve
+                 playPauseRejecter:(RCTPromiseRejectBlock)reject)
+{
+  bool isPlaying = false;
+  
+  if (playerA->playing) {
+    playerA->pause();
+    playerB->pause();
+    isPlaying = true;
+  } else {
+    bool masterIsA = (crossValue <= 0.5f);
+    playerA->play(!masterIsA);
+    playerB->play(masterIsA);
+    isPlaying = true;
+  };
+  
+  if (isPlaying) {
+    resolve(@"true");
+  } else {
+    reject(@"get_error", @"Error while playPause", nil);
+  }
+}
+
+RCT_EXPORT_METHOD(toggleSample:(NSInteger)sampleId)
+{
+  switch (sampleId) {
+    case 1:
+      if (volA == 1.0f * headroom) {
+        volA = 0;
+      } else {
+        volA = 1.0f * headroom;
+      };
+      break;
+    case 2:
+      if (volB == 1.0f * headroom) {
+        volB = 0;
+      } else {
+        volB = 1.0f * headroom;
+      };
+      break;
+    default:
+      break;
+  };
+}
+
 - (void)dealloc {
   delete playerA;
   delete playerB;
@@ -129,76 +173,54 @@ RCT_REMAP_METHOD(init,
   playerB->onMediaserverInterrupt();
 }
 
-RCT_REMAP_METHOD(playPause,
-                 playPauseResolver:(RCTPromiseResolveBlock)resolve
-                 playPauseRejecter:(RCTPromiseRejectBlock)reject)
-{
-  bool isPlaying = false;
+//static inline float floatToFrequency(float value) {
+//  static const float min = logf(20.0f) / logf(10.0f);
+//  static const float max = logf(20000.0f) / logf(10.0f);
+//  static const float range = max - min;
+//  return powf(10.0f, value * range + min);
+//}
+//
+//RCT_EXPORT_METHOD(fxValue:(NSInteger)activeFx value:(float)value)
+//{
+//  switch (activeFx) {
+//    case 1:
+//      filter->setResonantParameters(floatToFrequency(1.0f - value), 0.1f);
+//      filter->enable(true);
+//      flanger->enable(false);
+//      roll->enable(false);
+//      break;
+//    case 2:
+//      if (value > 0.8f) roll->beats = 0.0625f;
+//      else if (value > 0.6f) roll->beats = 0.125f;
+//      else if (value > 0.4f) roll->beats = 0.25f;
+//      else if (value > 0.2f) roll->beats = 0.5f;
+//      else roll->beats = 1.0f;
+//      roll->enable(true);
+//      filter->enable(false);
+//      flanger->enable(false);
+//      break;
+//    default:
+//      flanger->setWet(value);
+//      flanger->enable(true);
+//      filter->enable(false);
+//      roll->enable(false);
+//  };
+//}
+//
+//RCT_EXPORT_METHOD(crossFader:(float)crossValue)
+//{
+//  if (crossValue < 0.01f) {
+//    volA = 1.0f * headroom;
+//    volB = 0.0f;
+//  } else if (crossValue > 0.99f) {
+//    volA = 0.0f;
+//    volB = 1.0f * headroom;
+//  } else {
+//    volA = cosf(M_PI_2 * crossValue) * headroom;
+//    volB = cosf(M_PI_2 * (1.0f - crossValue)) * headroom;
+//  };
+//}
 
-  if (playerA->playing) {
-    playerA->pause();
-    playerB->pause();
-    isPlaying = true;
-  } else {
-    bool masterIsA = (crossValue <= 0.5f);
-    playerA->play(!masterIsA);
-    playerB->play(masterIsA);
-    isPlaying = true;
-  };
- 
-  if (isPlaying) {
-    resolve(@"true");
-  } else {
-    reject(@"get_error", @"Error while playPause", nil);
-  }
-}
-
-static inline float floatToFrequency(float value) {
-  static const float min = logf(20.0f) / logf(10.0f);
-  static const float max = logf(20000.0f) / logf(10.0f);
-  static const float range = max - min;
-  return powf(10.0f, value * range + min);
-}
-
-RCT_EXPORT_METHOD(fxValue:(NSInteger)activeFx value:(float)value)
-{
-  switch (activeFx) {
-    case 1:
-      filter->setResonantParameters(floatToFrequency(1.0f - value), 0.1f);
-      filter->enable(true);
-      flanger->enable(false);
-      roll->enable(false);
-      break;
-    case 2:
-      if (value > 0.8f) roll->beats = 0.0625f;
-      else if (value > 0.6f) roll->beats = 0.125f;
-      else if (value > 0.4f) roll->beats = 0.25f;
-      else if (value > 0.2f) roll->beats = 0.5f;
-      else roll->beats = 1.0f;
-      roll->enable(true);
-      filter->enable(false);
-      flanger->enable(false);
-      break;
-    default:
-      flanger->setWet(value);
-      flanger->enable(true);
-      filter->enable(false);
-      roll->enable(false);
-  };
-}
-
-RCT_EXPORT_METHOD(crossFader:(float)crossValue)
-{
-  if (crossValue < 0.01f) {
-    volA = 1.0f * headroom;
-    volB = 0.0f;
-  } else if (crossValue > 0.99f) {
-    volA = 0.0f;
-    volB = 1.0f * headroom;
-  } else {
-    volA = cosf(M_PI_2 * crossValue) * headroom;
-    volB = cosf(M_PI_2 * (1.0f - crossValue)) * headroom;
-  };
-}
+RCT_EXPORT_MODULE();
 
 @end

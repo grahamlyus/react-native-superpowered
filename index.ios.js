@@ -21,7 +21,6 @@ export default class ReactNativeSuperpowered extends Component {
 
     this.state = {
       init: null,
-      playPause: false,
       buttonTitle: 'Play',
     }
 
@@ -51,26 +50,10 @@ export default class ReactNativeSuperpowered extends Component {
         buttonTitle = 'Pause';
       }
 
-      this.setState({ playPause, buttonTitle });
+      this.setState({ buttonTitle });
     } catch (e) {
       console.error(e);
     }
-  }
-
-  updateCrossFader(value) {
-    SuperpoweredModule.crossFader(value);
-  }
-
-  updateFxFlanger(value) {
-    SuperpoweredModule.fxValue(0, value);
-  }
-
-  updateFxFilter(value) {
-    SuperpoweredModule.fxValue(1, value);
-  }
-
-  updateFxRoll(value) {
-    SuperpoweredModule.fxValue(2, value);
   }
 
   render() {
@@ -86,17 +69,29 @@ export default class ReactNativeSuperpowered extends Component {
                 title={this.state.buttonTitle}
               />
 
-            <Text style={styles.text}>Crossfader</Text>
-              <Slider value={0} onValueChange={this.updateCrossFader} />
+              <Button
+                style={styles.button}
+                onPress={() => SuperpoweredModule.toggleSample(1)}
+                title="sample 1"
+              />
 
-              <Text style={styles.text}>Flanger</Text>
-              <Slider value={0} onValueChange={this.updateFxFlanger} />
+              <Button
+                style={styles.button}
+                onPress={() => SuperpoweredModule.toggleSample(2)}
+                title="sample 2"
+              />
 
-              <Text style={styles.text}>Filter</Text>
-              <Slider value={0} onValueChange={this.updateFxFilter} />
+              <Button
+                style={styles.button}
+                onPress={() => SuperpoweredModule.toggleSample(3)}
+                title="sample 3"
+              />
 
-              <Text style={styles.text}>Roll</Text>
-              <Slider value={0} onValueChange={this.updateFxRoll} />
+              <Button
+                style={styles.button}
+                onPress={() => SuperpoweredModule.toggleSample(4)}
+                title="sample 4"
+              />
             </View>
         }
       </View>
