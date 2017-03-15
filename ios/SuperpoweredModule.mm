@@ -83,8 +83,7 @@ RCT_REMAP_METHOD(init,
                  initRejecter:(RCTPromiseRejectBlock)reject)
 {
   lastSamplerate = activeFx = 0;
-  crossValue = 0.0f;
-  volA = volB = 1.0f * headroom;
+  crossValue = volA = volB = 0.0f;
   if (posix_memalign((void **)&stereoBuffer, 16, 4096 + 128) != 0) abort(); // Allocating memory, aligned to 16.
   
   playerA = new SuperpoweredAdvancedAudioPlayer((__bridge void *)self, playerEventCallbackA, 44100, 0);

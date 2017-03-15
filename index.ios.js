@@ -10,6 +10,7 @@ import {
   View,
   Button,
   Slider,
+  TouchableHighlight,
   NativeModules
 } from 'react-native';
 
@@ -69,29 +70,33 @@ export default class ReactNativeSuperpowered extends Component {
                 title={this.state.buttonTitle}
               />
 
-              <Button
+              <TouchableHighlight
                 style={styles.button}
                 onPress={() => SuperpoweredModule.toggleSample(1)}
-                title="sample 1"
-              />
+              >
+                <Text></Text>
+              </TouchableHighlight>
 
-              <Button
+              <TouchableHighlight
                 style={styles.button}
                 onPress={() => SuperpoweredModule.toggleSample(2)}
-                title="sample 2"
-              />
+              >
+                <Text></Text>
+              </TouchableHighlight>
 
-              <Button
+              <TouchableHighlight
                 style={styles.button}
                 onPress={() => SuperpoweredModule.toggleSample(3)}
-                title="sample 3"
-              />
+              >
+                <Text></Text>
+              </TouchableHighlight>
 
-              <Button
+              <TouchableHighlight
                 style={styles.button}
                 onPress={() => SuperpoweredModule.toggleSample(4)}
-                title="sample 4"
-              />
+              >
+                <Text></Text>
+              </TouchableHighlight>
             </View>
         }
       </View>
@@ -110,6 +115,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     width: 270,
+  },
+  button: {
+    width: 15,
+    height: 15,
+    borderRadius: 50,
+    overflow: "hidden",
+    backgroundColor: 'tomato',
   },
 });
 
