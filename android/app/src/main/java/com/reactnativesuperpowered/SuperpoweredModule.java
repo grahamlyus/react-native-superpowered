@@ -36,6 +36,12 @@ public class SuperpoweredModule extends ReactContextBaseJavaModule implements Li
 
   @Override
   public void onHostDestroy() {
+    if (_audioEngineAndroid != 0) {
+      destroyAudioEngineAndroid(_audioEngineAndroid);
+    }
+    if (_audioEngine != 0) {
+      destroyAudioEngine(_audioEngine);
+    }
   }
 
   // React Methods
@@ -53,33 +59,35 @@ public class SuperpoweredModule extends ReactContextBaseJavaModule implements Li
     if (sampleRateString == null) sampleRateString = "44100";
     if (bufferSizeString == null) bufferSizeString = "512";
 
+    int sampleRate = Integer.parseInt(sampleRateString);
+    int bufferSize = Integer.parseInt(bufferSizeString);
+
     // Files under res/raw are not zipped, just copied into the APK. Get the offset and length to know where our files are located.
+    String path = getReactApplicationContext().getPackageResourcePath();
     int[] file1 = getOffsetAndLength(R.raw.lycka);
     int[] file2 = getOffsetAndLength(R.raw.nuyorica);
 
-    Superpowered(Integer.parseInt(sampleRateString), Integer.parseInt(bufferSizeString),
-            getReactApplicationContext().getPackageResourcePath(),
-            file1[0], file1[1], file2[0], file2[1]
-    );
+    _audioEngine = createAudioEngine(bufferSize, path, file1[0], file1[1], path, file2[0], file2[1]);
+    _audioEngineAndroid = createAudioEngineAndroid(_audioEngine, sampleRate, bufferSize);
 
     promise.resolve("true");
   }
 
   @ReactMethod
   public void playPause(Promise promise) {
-    onPlayPause();
+    onPlayPause(_audioEngine);
     promise.resolve("true");
   }
 
   @ReactMethod
   public void fxValue(Integer activeFx, Float value, Promise promise) {
-    onFxValue(activeFx, value);
+    onFxValue(_audioEngine, activeFx, value);
     promise.resolve(null);
   }
 
   @ReactMethod
   public void crossFader(Float value, Promise promise) {
-    onCrossfader(value);
+    onCrossfader(_audioEngine, value);
     promise.resolve(null);
   }
 
@@ -98,12 +106,18 @@ public class SuperpoweredModule extends ReactContextBaseJavaModule implements Li
   }
 
   // JNI
-  private native void Superpowered(int samplerate, int buffersize, String apkPath, int file1Offset, int file1Length, int file2Offset, int file2Length);
-  private native void onPlayPause();
-  private native void onFxValue(int activeFx, float value);
-  private native void onCrossfader(float value);
+  private long _audioEngine;
+  private long _audioEngineAndroid;
+
+  private native long createAudioEngine(int bufferSize, String pathA, int offsetA, int lengthA, String pathB, int offsetB, int lengthB);
+  private native long destroyAudioEngine(long _this);
+  private native void onPlayPause(long _this);
+  private native void onFxValue(long _this, int activeFx, float value);
+  private native void onCrossfader(long _this, float value);
+  private native long createAudioEngineAndroid(long _this, int samplerate, int buffersize);
+  private native long destroyAudioEngineAndroid(long _this);
 
   static {
-    System.loadLibrary("Superpowered");
+    System.loadLibrary("native");
   }
 }

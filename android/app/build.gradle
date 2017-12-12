@@ -76,6 +76,7 @@ apply from: "../../node_modules/react-native/react.gradle"
  * the correct one based on the CPU architecture of their device.
  */
 def enableSeparateBuildPerCPUArchitecture = false
+def audioEnginePath = file('../../audio-engine').absolutePath
 def superpoweredPath = file('../../superpowered/Superpowered').absolutePath
 
 /**
@@ -98,9 +99,9 @@ android {
         }
         externalNativeBuild {
             cmake {
-                arguments '-DANDROID_PLATFORM=android-16', '-DANDROID_TOOLCHAIN=clang', '-DANDROID_ARM_NEON=TRUE', '-DANDROID_STL=gnustl_static', "-DPATH_TO_SUPERPOWERED:STRING=${superpoweredPath}"
+                arguments '-DANDROID_PLATFORM=android-16', '-DANDROID_TOOLCHAIN=clang', '-DANDROID_ARM_NEON=TRUE', '-DANDROID_STL=gnustl_static', "-DPATH_TO_AUDIO_ENGINE:STRING=${audioEnginePath}", "-DPATH_TO_SUPERPOWERED:STRING=${superpoweredPath}"
                 cFlags '-O3', '-fsigned-char' // full optimization, char data type is signed
-                cppFlags '-fsigned-char', "-I${superpoweredPath}"
+                cppFlags '-fsigned-char', "-I${audioEnginePath}", "-I${superpoweredPath}"
             }
         }
     }
